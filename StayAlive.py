@@ -41,10 +41,12 @@ def updateDisplay():
     global happiness
     global hunger
 
-    if happiness <= 50:
+    if happiness <= 50: 
         catPic.config(image = hungryphoto)
-    if hunger <= 95 and happiness >= 50:
+        startLabel.config(text="Not a happy cat anymore!")
+    if  hunger <= 95 and hunger >= 50 and happiness >= 50 and happiness <= 100:
         catPic.config(image = normalphoto)
+        startLabel.config(text=" ")
 
     #update the time left label.
     hungerLabel.config(text="happiness: " + str(happiness))
@@ -89,10 +91,11 @@ def play():
 
     global happiness
     
-    if happiness <= 95:
+    if happiness <= 100:
         happiness += 20
     else:
-               startLabel.config(text="Too much playing will make her tired!")  
+               startLabel.config(text="Too much playing will make her tired!")
+               catPic.config(image = sleepyphoto)
 #-------------------------------------------------------------------
 def feed():
 
@@ -110,7 +113,7 @@ def isAlive():
 
     global happiness
     
-    if happiness <= 0 and hunger <= 0:
+    if happiness <= 0 or hunger <= 0:
         #update the start info label.
         startLabel.config(text="GAME OVER! She doesn't love you anymore")     
         return False
@@ -139,9 +142,10 @@ hungerLabel.pack()
 dayLabel = tkinter.Label(root, text="Hunger: " + str(hunger), font=('Helvetica', 12))
 dayLabel.pack()
 
-hungryphoto = tkinter.PhotoImage(file="hungry.gif")
+sadphoto = tkinter.PhotoImage(file="sad.gif")
 normalphoto = tkinter.PhotoImage(file="normal.gif")
 foodphoto = tkinter.PhotoImage(file="foodbaby.gif")
+sleepyphoto = tkinter.PhotoImage(file="sleepy.gif")
 
 #add a cat image
 catPic = tkinter.Label(root, image=normalphoto)
